@@ -1,0 +1,32 @@
+{
+  "name": "cycle-todolist",
+  "version": "1.0.0",
+  "description": "Cycle.js todolist example.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxdonut/cycle-todolist.git"
+  },
+  "keywords": [
+    "cycle.js",
+    "example"
+  ],
+  "author": "foxdonut",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foxdonut/cycle-todolist/issues"
+  },
+  "homepage": "https://github.com/foxdonut/cycle-todolist#readme",
+  "dependencies": {
+    "@cycle/core": "^3.1.0",
+    "@cycle/dom": "^5.3.1",
+    "@cycle/http": "^4.0.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0"
+  }
+}
