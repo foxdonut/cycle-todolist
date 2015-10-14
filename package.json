@@ -26,7 +26,9 @@
     "@cycle/core": "^3.1.0",
     "@cycle/dom": "^5.3.1",
     "@cycle/http": "^4.0.0",
+    "co-body": "^4.0.0",
     "koa": "^1.1.0",
+    "koa-route": "^2.4.2",
     "ramda": "^0.18.0"
   },
   "devDependencies": {
