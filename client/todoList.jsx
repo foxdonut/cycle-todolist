@@ -5,10 +5,10 @@ import CycleDOM from "@cycle/dom";
 let todoList = function(todos$) {
   let renderTodo = function(todo) {
     return (
-      <tr key={todo.id}>
+      <tr>
         <td>{todo.priority}</td>
         <td>{todo.description}</td>
-        <td><button className="btn btn-danger btn-xs">Delete</button></td>
+        <td><button className="btn btn-danger btn-xs deleteTodo" attributes={{"data-todo-id": todo.id}}>Delete</button></td>
       </tr>
     );
   };
