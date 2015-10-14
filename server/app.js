@@ -5,6 +5,9 @@ var app = koa();
 
 var routes = require("koa-route");
 var parse = require("co-body");
+var serve = require("koa-static");
+
+app.use(serve("public"));
 
 var createTodoList = function() {
   return [
