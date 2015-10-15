@@ -43,7 +43,7 @@ let model = function(HTTP, events$) {
     .mergeAll()
     .map(res => JSON.parse(res.text));
 
-  let formData$ = saveTodoRequest$
+  let formData$ = events$.saveTodo$
     .map(returnBlankForm)
     .merge(events$.inFormEdit$.map(function(todo) {
       return {todo: todo};

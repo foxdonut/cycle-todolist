@@ -7,16 +7,17 @@ let events = function(DOM) {
       return evt.target.dataset.todoId;
     });
 
+  let serializeForm = function(evt) {
+    evt.preventDefault();
+    return serialize(evt.target.form, {hash: true});
+  };
+
   let inFormEdit$ = DOM.select("input[type='text']").events("change")
-    .map(function(evt) {
-      return serialize(evt.target.form, {hash: true});
-    });
+    .map(serializeForm);
 
   let saveTodo$ = DOM.select("button[data-action='saveTodo']").events("click")
-    .map(function(evt) {
-      evt.preventDefault();
-      return serialize(evt.target.form, {hash: true});
-    }).share();
+    .map(serializeForm)
+    .share();
 
   return {
     deleteTodo$: deleteTodo$,
