@@ -28,11 +28,11 @@ var getTodoList = function() {
 };
 
 
-var sendTodoList = function*() {
+var onTodoList = function*() {
   this.body = getTodoList();
 };
 
-app.use(routes.get("/todoList", sendTodoList));
+app.use(routes.get("/todoList", onTodoList));
 
 var deleteTodo = function(todoId) {
   for (var i = 0, t = todoList.length; i < t; i++) {
@@ -48,6 +48,28 @@ var onDeleteTodo = function*(todoId) {
   this.body = getTodoList();
 };
 
-app.use(routes.get("/deleteTodo/:todoId", onDeleteTodo));
+app.use(routes.del("/deleteTodo/:todoId", onDeleteTodo));
+
+var saveTodo = function(todo) {
+  if (!todo.id) {
+    todo.id = todoList.length + 1;
+    todoList.push(todo);
+  }
+  else {
+    for (var i = 0, t = todoList.length; i < t; i++) {
+      if (todoList[i].id === todoId) {
+        todoList[i] = todo;
+        break;
+      }
+    }
+  }
+}
+
+var onSaveTodo = function*() {
+  saveTodo(yield parse(this));
+  this.body = getTodoList();
+};
+
+app.use(routes.post("/saveTodo", onSaveTodo));
 
 module.exports = app;
