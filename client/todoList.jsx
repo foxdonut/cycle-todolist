@@ -1,5 +1,4 @@
 /** @jsx CycleDOM.hJSX */
-import Cycle from "@cycle/core";
 import CycleDOM from "@cycle/dom";
 
 let todoList = function(todos$) {
@@ -17,7 +16,7 @@ let todoList = function(todos$) {
     return (
       <div>
         <div>Todo List:</div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Priority</th>
