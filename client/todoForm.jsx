@@ -18,7 +18,11 @@ let todoForm = function(formData$) {
               <label htmlFor="description">Description:</label>
               <input type="text" id="description" name="description" value={todo.description} className="form-control"/>
             </div>
-            <div><button className="btn btn-primary btn-xs" attributes={{"data-action": "saveTodo"}}>Save</button></div>
+            <div>
+              <button className="btn btn-primary btn-xs" attributes={{"data-action": "saveTodo"}}>Save</button>
+              <span> </span>
+              <button className="btn btn-danger btn-xs" attributes={{"data-action": "cancelTodo"}}>Cancel</button>
+            </div>
           </form>
         </div>
       </div>

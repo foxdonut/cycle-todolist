@@ -6,6 +6,7 @@ const TODO_SAVE_URL = "/saveTodo";
 
 const blankForm = {
   todo: {
+    id: "",
     priority: "",
     description: ""
   }
@@ -57,6 +58,11 @@ let model = function(HTTP, events$) {
       return {todo: todo};
     }))
     .merge(editTodo$)
+    .merge(events$.cancelTodo$.map(returnBlankForm))
+    .do(function(formData) {
+      console.log("formData:", JSON.stringify(formData));
+      return formData;
+    })
     .startWith(blankForm);
 
   return {

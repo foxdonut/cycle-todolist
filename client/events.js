@@ -24,11 +24,17 @@ let events = function(DOM) {
     .map(serializeForm)
     .share();
 
+  let cancelTodo$ = DOM.select("button[data-action='cancelTodo']").events("click")
+    .map(function(evt) {
+      evt.preventDefault();
+    });
+
   return {
     deleteTodo$: deleteTodo$,
     inFormEdit$: inFormEdit$,
     editTodo$: editTodo$,
-    saveTodo$: saveTodo$
+    saveTodo$: saveTodo$,
+    cancelTodo$: cancelTodo$
   };
 };
 
