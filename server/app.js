@@ -34,4 +34,20 @@ var sendTodoList = function*() {
 
 app.use(routes.get("/todoList", sendTodoList));
 
+var deleteTodo = function(todoId) {
+  for (var i = 0, t = todoList.length; i < t; i++) {
+    if (todoList[i].id === todoId) {
+      todoList.splice(i, 1);
+      break;
+    }
+  }
+};
+
+var onDeleteTodo = function*(todoId) {
+  deleteTodo(parseInt(todoId, 10));
+  this.body = getTodoList();
+};
+
+app.use(routes.get("/deleteTodo/:todoId", onDeleteTodo));
+
 module.exports = app;
