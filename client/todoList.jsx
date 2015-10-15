@@ -2,7 +2,7 @@
 import Cycle from "@cycle/core";
 import CycleDOM from "@cycle/dom";
 
-let todoList = function(todos$) {
+let todoList = function(responses) {
   let renderTodo = function(todo) {
     return (
       <tr>
@@ -13,7 +13,7 @@ let todoList = function(todos$) {
     );
   };
 
-  let view$ = todos$.map(function(todos) {
+  let view$ = responses.todos$.map(function(todos) {
     return (
       <div>
         <div>Todo List:</div>
@@ -34,7 +34,8 @@ let todoList = function(todos$) {
   })
 
   return {
-    DOM: view$
+    DOM: view$,
+    HTTP: responses.HTTP
   };
 };
 
