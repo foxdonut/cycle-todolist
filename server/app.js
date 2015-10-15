@@ -57,7 +57,7 @@ var saveTodo = function(todo) {
   }
   else {
     for (var i = 0, t = todoList.length; i < t; i++) {
-      if (todoList[i].id === todoId) {
+      if (todoList[i].id === todo.id) {
         todoList[i] = todo;
         break;
       }

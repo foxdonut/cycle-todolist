@@ -7,7 +7,11 @@ let todoList = function(todos$) {
       <tr>
         <td>{todo.priority}</td>
         <td>{todo.description}</td>
-        <td><button className="btn btn-danger btn-xs deleteTodo" attributes={{"data-todo-id": todo.id}}>Delete</button></td>
+        <td>
+          <button className="btn btn-primary btn-xs editTodo" attributes={{"data-todo-id": todo.id}}>Edit</button>
+          <span> </span>
+          <button className="btn btn-danger btn-xs deleteTodo" attributes={{"data-todo-id": todo.id}}>Delete</button>
+        </td>
       </tr>
     );
   };

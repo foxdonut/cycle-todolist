@@ -31,7 +31,8 @@
     "koa": "^1.1.0",
     "koa-route": "^2.4.2",
     "koa-static": "^1.5.1",
-    "ramda": "^0.18.0"
+    "ramda": "^0.18.0",
+    "validate": "^3.0.1"
   },
   "devDependencies": {
     "babelify": "^6.3.0",

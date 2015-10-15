@@ -1,4 +1,5 @@
 import Cycle from "@cycle/core";
+import R from "ramda";
 
 const TODO_LIST_URL = "/todoList";
 const TODO_SAVE_URL = "/saveTodo";
@@ -21,6 +22,9 @@ let deleteTodoUrl = function(todoId) {
 let model = function(HTTP, events$) {
   let saveTodoRequest$ = events$.saveTodo$
     .map(function(todo) {
+      if (todo.id) {
+        todo.id = parseInt(todo.id, 10);
+      }
       return {
         method: "POST",
         url: TODO_SAVE_URL,
@@ -43,11 +47,16 @@ let model = function(HTTP, events$) {
     .mergeAll()
     .map(res => JSON.parse(res.text));
 
+  let editTodo$ = events$.editTodo$.combineLatest(todos$, function(editTodoId, todos) {
+    return {todo: R.find(R.propEq("id", editTodoId))(todos)};
+  });
+
   let formData$ = events$.saveTodo$
     .map(returnBlankForm)
     .merge(events$.inFormEdit$.map(function(todo) {
       return {todo: todo};
     }))
+    .merge(editTodo$)
     .startWith(blankForm);
 
   return {

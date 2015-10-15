@@ -2,10 +2,15 @@ import Cycle from "@cycle/core";
 import serialize from "form-serialize";
 
 let events = function(DOM) {
+  let getTodoId = function(evt) {
+    return parseInt(evt.target.dataset.todoId, 10);
+  };
+
   let deleteTodo$ = DOM.select("button.deleteTodo").events("click")
-    .map(function(evt) {
-      return evt.target.dataset.todoId;
-    });
+    .map(getTodoId);
+
+  let editTodo$ = DOM.select("button.editTodo").events("click")
+    .map(getTodoId);
 
   let serializeForm = function(evt) {
     evt.preventDefault();
@@ -22,6 +27,7 @@ let events = function(DOM) {
   return {
     deleteTodo$: deleteTodo$,
     inFormEdit$: inFormEdit$,
+    editTodo$: editTodo$,
     saveTodo$: saveTodo$
   };
 };

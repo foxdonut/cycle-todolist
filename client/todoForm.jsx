@@ -9,6 +9,7 @@ let todoForm = function(formData$) {
       <div className="row">
         <div className="col-md-4">
           <form>
+            <input type="hidden" name="id" value={todo.id}/>
             <div className="form-group">
               <label htmlFor="priority">Priority:</label>
               <input type="text" id="priority" name="priority" value={todo.priority} className="form-control"/>
