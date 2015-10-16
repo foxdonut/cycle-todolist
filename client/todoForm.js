@@ -10,15 +10,14 @@ let todoForm = function(formData$) {
       return acc;
     }, {}, R.keys(validationErrors));
 
-    return
-      h("div.row",
-        h("div.col-md-4",
-          h("form", [
-            h("input.hidden", {name:"id", value:todo.id}),
-            h("div")
-          ])
-        )
-      );
+    return h("div.row",
+      h("div.col-md-4",
+        h("form", [
+          h("input.hidden", {name:"id", value:todo.id}),
+          h("div")
+        ])
+      )
+    );
 
       /*
       <div className="row">

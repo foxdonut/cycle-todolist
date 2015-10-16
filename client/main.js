@@ -12,8 +12,6 @@ let main = function(responses) {
   let formView$ = todoForm(model$.formData$);
 
   let view$ = listView$.DOM.combineLatest(formView$.DOM, function(listView, formView) {
-    console.log("listView:", listView);
-    console.log("formView:", formView);
     return h("div", [formView, listView]);
   });
 
