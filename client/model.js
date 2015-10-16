@@ -46,9 +46,10 @@ let model = function(HTTP, events$) {
   let todos$ = HTTP
     //.filter(res$ => res$.request === TODO_LIST_URL)
     .mergeAll()
-    .map(res => JSON.parse(res.text));
+    .map(res => JSON.parse(res.text))
+    .share();
 
-  let editTodo$ = events$.editTodo$.combineLatest(todos$, function(editTodoId, todos) {
+  let editTodo$ = events$.editTodo$.withLatestFrom(todos$, function(editTodoId, todos) {
     return {todo: R.find(R.propEq("id", editTodoId))(todos)};
   });
 
@@ -60,7 +61,6 @@ let model = function(HTTP, events$) {
     .merge(editTodo$)
     .merge(events$.cancelTodo$.map(returnBlankForm))
     .do(function(formData) {
-      console.log("formData:", JSON.stringify(formData));
       return formData;
     })
     .startWith(blankForm);
