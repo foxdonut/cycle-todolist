@@ -1,22 +1,30 @@
 /** @jsx CycleDOM.hJSX */
 import CycleDOM from "@cycle/dom";
+import R from "ramda";
 
 let todoForm = function(formData$) {
   let view$ = formData$.map(function(model) {
     var todo = model.todo;
+    var validationErrors = model.validationErrors || {};
+    var classNames = R.reduce(function(acc, key) {
+      acc[key] = "form-group has-error";
+      return acc;
+    }, {}, R.keys(validationErrors));
 
     return (
       <div className="row">
         <div className="col-md-4">
           <form>
             <input type="hidden" name="id" value={todo.id}/>
-            <div className="form-group">
+            <div className={classNames.priority || "form-group"}>
               <label htmlFor="priority">Priority:</label>
               <input type="text" id="priority" name="priority" value={todo.priority} className="form-control"/>
+              <span className="help-block">{validationErrors.priority}</span>
             </div>
-            <div className="form-group">
+            <div className={classNames.description || "form-group"}>
               <label htmlFor="description">Description:</label>
               <input type="text" id="description" name="description" value={todo.description} className="form-control"/>
+              <span className="help-block">{validationErrors.description}</span>
             </div>
             <div>
               <button className="btn btn-primary btn-xs" attributes={{"data-action": "saveTodo"}}>Save</button>

@@ -1,5 +1,6 @@
 import Cycle from "@cycle/core";
 import R from "ramda";
+import validation from "./validation";
 
 const TODO_LIST_URL = "/todoList";
 const TODO_SAVE_URL = "/saveTodo";
@@ -9,6 +10,8 @@ const blankForm = {
     id: "",
     priority: "",
     description: ""
+  },
+  validationErrors: {
   }
 };
 
@@ -21,8 +24,21 @@ let deleteTodoUrl = function(todoId) {
 };
 
 let model = function(HTTP, events$) {
-  let saveTodoRequest$ = events$.saveTodo$
-    .map(function(todo) {
+  let validation$ = events$.saveTodo$.map(function(todo) {
+    return {todo: todo, validationErrors: validation(todo)};
+  });
+
+  let valid$ = validation$.filter(function(model) {
+    return !model.validationErrors;
+  });
+
+  let invalid$ = validation$.filter(function(model) {
+    return !!model.validationErrors;
+  });
+
+  let saveTodoRequest$ = valid$
+    .map(function(model) {
+      let todo = model.todo;
       if (todo.id) {
         todo.id = parseInt(todo.id, 10);
       }
@@ -59,6 +75,7 @@ let model = function(HTTP, events$) {
       return {todo: todo};
     }))
     .merge(editTodo$)
+    .merge(invalid$)
     .merge(events$.cancelTodo$.map(returnBlankForm))
     .do(function(formData) {
       return formData;
