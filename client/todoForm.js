@@ -1,5 +1,4 @@
-/** @jsx CycleDOM.hJSX */
-import CycleDOM from "@cycle/dom";
+import {h} from "@cycle/dom";
 import R from "ramda";
 
 let todoForm = function(formData$) {
@@ -11,7 +10,17 @@ let todoForm = function(formData$) {
       return acc;
     }, {}, R.keys(validationErrors));
 
-    return (
+    return
+      h("div.row",
+        h("div.col-md-4",
+          h("form", [
+            h("input.hidden", {name:"id", value:todo.id}),
+            h("div")
+          ])
+        )
+      );
+
+      /*
       <div className="row">
         <div className="col-md-4">
           <form>
@@ -34,7 +43,7 @@ let todoForm = function(formData$) {
           </form>
         </div>
       </div>
-    );
+      */
   });
  
   return {
