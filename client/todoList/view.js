@@ -1,7 +1,7 @@
 import {h} from "@cycle/dom";
 const {button, div, span, table, tbody, td, thead, th, tr} = require("hyperscript-helpers")(h);
 
-let todoList = function(model) {
+let view = function(model) {
   let renderTodo = function(todo) {
     return tr([
       td(todo.priority),
@@ -29,4 +29,4 @@ let todoList = function(model) {
   };
 };
 
-export default todoList;
+export default view;

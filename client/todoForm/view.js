@@ -1,10 +1,10 @@
 import {h} from "@cycle/dom";
 import R from "ramda";
 
-let todoForm = function(formData$) {
-  let view$ = formData$.map(function(model) {
-    var todo = model.todo;
-    var validationErrors = model.validationErrors || {};
+let view = function(model) {
+  let view$ = model.todoForm$.map(function(todoForm) {
+    var todo = todoForm.todo;
+    var validationErrors = todoForm.validationErrors || {};
     var classNames = R.reduce(function(acc, key) {
       acc[key] = "form-group has-error";
       return acc;
@@ -50,4 +50,4 @@ let todoForm = function(formData$) {
   };
 };
 
-export default todoForm;
+export default view;
