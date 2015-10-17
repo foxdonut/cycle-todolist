@@ -7,13 +7,15 @@ let main = function(sources) {
   let todoList = todoListMain(sources);
   let todoForm = todoFormMain(sources);
 
-  let view$ = listView$.DOM.combineLatest(formView$.DOM, function(listView, formView) {
+  let view$ = todoList.DOM.combineLatest(todoForm.DOM, function(listView, formView) {
     return h("div", [formView, listView]);
   });
 
+  let request$ = todoList.HTTP.merge(todoForm.HTTP);
+
   return {
     DOM: view$,
-    HTTP: model$.request$
+    HTTP: request$
   };
 };
 

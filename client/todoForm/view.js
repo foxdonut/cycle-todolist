@@ -13,35 +13,32 @@ let view = function(model) {
     return h("div.row",
       h("div.col-md-4",
         h("form", [
-          h("input.hidden", {name:"id", value:todo.id}),
-          h("div")
+          h("input", {type:"hidden", name:"id", value:todo.id}),
+          h("div." + (classNames.priority || "form-group"), [
+            h("label", {htmlFor:"priority"}, "Priority:"),
+            h("input.form-control", {type:"text", id:"priority", name:"priority", value:todo.priority}),
+            h("span.help-block", validationErrors.priority)
+          ]),
+          h("div." + (classNames.description || "form-group"), [
+            h("label", {htmlFor:"description"}, "Description:"),
+            h("input.form-control", {type:"text", id:"description", name:"description", value:todo.description}),
+            h("span.help-block", validationErrors.description)
+          ]),
+          h("div", [
+            h("button.btn.btn-primary.btn-xs.saveTodo", "Save"),
+            h("span", " "),
+            h("button.btn.btn-danger.btn-xs.cancelTodo", "Cancel")
+          ])
         ])
       )
     );
 
       /*
-      <div className="row">
-        <div className="col-md-4">
-          <form>
-            <input type="hidden" name="id" value={todo.id}/>
-            <div className={classNames.priority || "form-group"}>
-              <label htmlFor="priority">Priority:</label>
-              <input type="text" id="priority" name="priority" value={todo.priority} className="form-control"/>
-              <span className="help-block">{validationErrors.priority}</span>
-            </div>
-            <div className={classNames.description || "form-group"}>
-              <label htmlFor="description">Description:</label>
-              <input type="text" id="description" name="description" value={todo.description} className="form-control"/>
-              <span className="help-block">{validationErrors.description}</span>
-            </div>
             <div>
               <button className="btn btn-primary btn-xs" attributes={{"data-action": "saveTodo"}}>Save</button>
               <span> </span>
               <button className="btn btn-danger btn-xs" attributes={{"data-action": "cancelTodo"}}>Cancel</button>
             </div>
-          </form>
-        </div>
-      </div>
       */
   });
  

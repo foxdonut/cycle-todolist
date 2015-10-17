@@ -44,7 +44,7 @@ let model = function(HTTP, intent) {
 
   let todoForm$ = intent.saveTodo$
     .map(returnBlankForm)
-    .merge(events$.inFormEdit$.map(function(todo) {
+    .merge(intent.inFormEdit$.map(function(todo) {
       return {todo: todo};
     }))
 //  .merge(editTodo$)

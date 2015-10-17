@@ -1,20 +1,22 @@
 import {h} from "@cycle/dom";
-const {button, div, span, table, tbody, td, thead, th, tr} = require("hyperscript-helpers")(h);
+const {button, div, span, table, tbody, td, thead, tr} = require("hyperscript-helpers")(h);
+import R from "ramda";
 
 let view = function(model) {
   let renderTodo = function(todo) {
     return tr([
-      td(todo.priority),
+      td(String(todo.priority)),
       td(todo.description),
       td([
-        button("btn.btn-primary.btn-xs.editTodo", {"data-todo-id": todo.id}, "Edit"),
+        button(".btn.btn-primary.btn-xs.editTodo", {attributes: {"data-todo-id": todo.id}}, "Edit"),
         span(" "),
-        button(".btn.btn-danger.btn-xs.deleteTodo", {"data-todo-id": todo.id}, "Delete")
+        button(".btn.btn-danger.btn-xs.deleteTodo", {attributes: {"data-todo-id": todo.id}}, "Delete")
       ])
     ]);
   };
 
   let view$ = model.todos$.map(function(todos) {
+    let th = R.binary(R.curry(h))("th");
     return div([
       div("Todo List:"),
       table(".table", [
