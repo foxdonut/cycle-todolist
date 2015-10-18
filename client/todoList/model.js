@@ -29,6 +29,7 @@ let model = function(HTTP, intent) {
 
   return {
     todos$: todos$,
+    editTodo$: editTodo$,
     HTTP: request$
   };
 };

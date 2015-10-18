@@ -6,7 +6,7 @@ let view = function(model) {
     var todo = todoForm.todo;
     var validationErrors = todoForm.validationErrors || {};
     var classNames = R.reduce(function(acc, key) {
-      acc[key] = "form-group has-error";
+      acc[key] = "form-group.has-error";
       return acc;
     }, {}, R.keys(validationErrors));
 

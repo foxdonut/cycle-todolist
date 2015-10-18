@@ -16,7 +16,7 @@ const returnBlankForm = function() {
   return blankForm;
 };
 
-let model = function(HTTP, intent) {
+let model = function(HTTP, intent, editTodo$) {
   let validation$ = intent.saveTodo$.map(function(todo) {
     return {todo: todo, validationErrors: validation(todo)};
   });
@@ -47,7 +47,7 @@ let model = function(HTTP, intent) {
     .merge(intent.inFormEdit$.map(function(todo) {
       return {todo: todo};
     }))
-//  .merge(editTodo$)
+    .merge(editTodo$)
     .merge(invalid$)
     .merge(intent.cancelTodo$.map(returnBlankForm))
     .startWith(blankForm);

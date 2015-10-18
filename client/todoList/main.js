@@ -9,7 +9,8 @@ let main = function(sources) {
 
   return {
     DOM: view$.DOM,
-    HTTP: model$.HTTP
+    HTTP: model$.HTTP,
+    editTodo$: model$.editTodo$
   };
 };
 
