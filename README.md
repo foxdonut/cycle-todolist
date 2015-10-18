@@ -34,5 +34,5 @@ This example demonstrates a simple Cycle.js todolist app that:
 - shows a todolist in a table, with edit and delete
 - shows a form to create and edit a todo
 - validates the form before sending to the server
-- creates views both with just `h` and also with `hyperscript-helpers` - you decide which you like better. :-)
+- creates views both with just `h` and also with [hyperscript-helpers](https://github.com/ohanhi/hyperscript-helpers) - you decide which you like better. :-)
 
