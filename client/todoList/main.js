@@ -10,6 +10,7 @@ let main = function(sources) {
   return {
     DOM: view$.DOM,
     HTTP: model$.HTTP,
+    todos$: model$.todos$,
     editTodo$: model$.editTodo$
   };
 };

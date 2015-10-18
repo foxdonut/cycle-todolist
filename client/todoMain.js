@@ -14,7 +14,8 @@ let todoMain = function(sources) {
 
   return {
     DOM: view$,
-    HTTP: request$
+    HTTP: request$,
+    todos$: todoList.todos$
   };
 };
 
