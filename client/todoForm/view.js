@@ -32,14 +32,6 @@ let view = function(model) {
         ])
       )
     );
-
-      /*
-            <div>
-              <button className="btn btn-primary btn-xs" attributes={{"data-action": "saveTodo"}}>Save</button>
-              <span> </span>
-              <button className="btn btn-danger btn-xs" attributes={{"data-action": "cancelTodo"}}>Cancel</button>
-            </div>
-      */
   });
  
   return {
