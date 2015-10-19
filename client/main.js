@@ -11,7 +11,8 @@ let main = function(sources) {
 
   return {
     DOM: view$,
-    HTTP: todoMain$.HTTP
+    HTTP: todoMain$.HTTP,
+    preventDefault: todoMain$.preventDefault
   };
 };
 

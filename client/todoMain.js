@@ -15,6 +15,7 @@ let todoMain = function(sources) {
   return {
     DOM: view$,
     HTTP: request$,
+    preventDefault: todoForm.preventDefault,
     todos$: todoList.todos$
   };
 };

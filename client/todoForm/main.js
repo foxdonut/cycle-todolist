@@ -9,7 +9,8 @@ let main = function(sources, editTodo$) {
 
   return {
     DOM: view$.DOM,
-    HTTP: model$.HTTP
+    HTTP: model$.HTTP,
+    preventDefault: intent$.preventDefault
   };
 };
 
